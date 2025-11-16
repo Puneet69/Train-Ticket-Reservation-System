@@ -1,0 +1,30 @@
+# Git files
+.git
+.gitignore
+
+# IDE files
+.vscode
+.idea
+*.iml
+
+# Build artifacts
+target/classes
+target/test-classes
+target/surefire-reports
+target/maven-status
+
+# Documentation
+README.md
+DEPLOYMENT_GUIDE.md
+COMPLETE_FEATURE_TEST_REPORT.md
+Screenshots
+
+# Test files
+test-all-features.sh
+
+# Logs
+*.log
+nohup.out
+
+# macOS
+.DS_Store
