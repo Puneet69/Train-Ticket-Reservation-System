@@ -17,13 +17,8 @@ RUN mvn dependency:go-offline -B
 COPY src ./src
 COPY WebContent ./WebContent
 
-# Build the application
+# Build the application (this also downloads webapp-runner via pom.xml)
 RUN mvn clean package -DskipTests
-
-# Download webapp-runner using wget
-RUN mkdir -p target/dependency && \
-    wget -q https://repo1.maven.org/maven2/com/heroku/webapp-runner/9.0.96.1/webapp-runner-9.0.96.1.jar \
-    -O target/dependency/webapp-runner-9.0.96.1.jar
 
 # Runtime stage
 FROM eclipse-temurin:21-jre-jammy
@@ -32,7 +27,7 @@ WORKDIR /app
 
 # Copy WAR file and webapp-runner from build stage
 COPY --from=build /app/target/TrainBook-1.0.0-SNAPSHOT.war ./app.war
-COPY --from=build /app/target/dependency/webapp-runner-9.0.96.1.jar ./webapp-runner.jar
+COPY --from=build /app/target/dependency/webapp-runner.jar ./webapp-runner.jar
 
 # Expose port (Railway will override with $PORT)
 EXPOSE 8080
