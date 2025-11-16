@@ -2,6 +2,9 @@
 /build/
 /target/
 
+# Sensitive files - DO NOT COMMIT
+src/application.properties
+
 # Java
 *.class
 *.jar
