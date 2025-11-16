@@ -1,9 +1,9 @@
 # Use Eclipse Temurin (OpenJDK) 21
 FROM eclipse-temurin:21-jdk-jammy AS build
 
-# Install Maven
+# Install Maven and wget
 RUN apt-get update && \
-    apt-get install -y maven && \
+    apt-get install -y maven wget && \
     rm -rf /var/lib/apt/lists/*
 
 # Set working directory
