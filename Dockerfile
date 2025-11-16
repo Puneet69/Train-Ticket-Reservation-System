@@ -20,8 +20,10 @@ COPY WebContent ./WebContent
 # Build the application
 RUN mvn clean package -DskipTests
 
-# Download webapp-runner
-RUN mvn dependency:copy -Dartifact=com.heroku:webapp-runner:9.0.96.1:jar -DoutputDirectory=target/dependency
+# Download webapp-runner using wget
+RUN mkdir -p target/dependency && \
+    wget -q https://repo1.maven.org/maven2/com/heroku/webapp-runner/9.0.96.1/webapp-runner-9.0.96.1.jar \
+    -O target/dependency/webapp-runner-9.0.96.1.jar
 
 # Runtime stage
 FROM eclipse-temurin:21-jre-jammy
